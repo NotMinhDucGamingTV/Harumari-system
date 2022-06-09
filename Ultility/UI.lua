@@ -17,6 +17,7 @@ local Frame = Instance.new("Frame")
 local ButtonCorner = Instance.new("UICorner")
 local NofiticationHome = Instance.new("Frame")
 local scripts = Instance.new('LocalScript', MDGTVHub)
+local event = Instance.new("BindableEvent",MDGTVHub)
 
 --Properties:
 
@@ -25,6 +26,8 @@ MDGTVHub.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 MDGTVHub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 scripts.Name = "MainHandler"
+
+event.Name = "Notification"
 
 Main.Name = "Main"
 Main.Parent = MDGTVHub
@@ -297,7 +300,7 @@ MakeDraggable(TopBar_2, Main)
 
 local function TAASHC_fake_script() -- MDGTVHub.Main 
 
-	local NotificationEvent = script.Parent.Notification
+	local NotificationEvent = event
 	local RecentNotification = nil
 	local RecentNotification2 = nil
 	local RecentNotification3 = nil
