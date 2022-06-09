@@ -312,11 +312,6 @@ local function TAASHC_fake_script() -- MDGTVHub.Main
 	local RecentNotification9 = nil
 	local NotificationDebounce = false
 	local UserInputService = game:GetService("UserInputService")
-	local gui = script.Parent.Main
-	local dragging
-	local dragInput
-	local dragStart
-	local startPos
 	NotificationEvent.Event:Connect(function(TitleText,Content,Duration)
 		if NotificationDebounce == false then
 			NotificationDebounce = true
