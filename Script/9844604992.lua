@@ -94,19 +94,10 @@ end
 local function GetRaidDependingOnLVL()
 	spawn(function()
 		local Level = game.Players.LocalPlayer.Stats.Level.Value
-		if Level >= 200 and Level <= 250 then
+		if Level >= 200 then
 			game.ReplicatedStorage.Remotes.Raid.Party:FireServer("CreateParty",{{200,{11308852312,11382943244}},game.Players.LocalPlayer.Stats.Level,"Heaven"})
 			wait(3)
 			game.ReplicatedStorage.Remotes.Raid.Party:FireServer("StartParty",{game.Players.LocalPlayer.Name.."'s Party"})
-		elseif Level >= 250 and Level <= 300 then
-			game.ReplicatedStorage.Remotes.Raid.Party:FireServer("CreateParty",{{250,{11291136312,11382945497}},game.Players.LocalPlayer.Stats.Level,"Desert Arena"})
-			wait(3)
-			game.ReplicatedStorage.Remotes.Raid.Party:FireServer("StartParty",{game.Players.LocalPlayer.Name.."'s Party"})
-		elseif Level >= 300 then
-			game.ReplicatedStorage.Remotes.Raid.Party:FireServer("CreateParty",{{250,{11893122384,11862422821}},game.Players.LocalPlayer.Stats.Level,"Winter Station"})
-			wait(3)
-			game.ReplicatedStorage.Remotes.Raid.Party:FireServer("StartParty",{game.Players.LocalPlayer.Name.."'s Party"})
-		end
 	end)
 end
 local HomeTabDropdown = HomeTabs:Dropdown("Weapon",weaponlist,function(Value)
