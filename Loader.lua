@@ -4,7 +4,7 @@ local success, Error = pcall(function()
    KeyContent = readfile("MinhDucHub/Key.txt")
 end)
 local function Load()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Minh_Doc_Hub/main/Script/'..game.PlaceId..'.lua'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Minh_Doc_Hub/main/Script/'..tostring(game.PlaceId)..'.lua'))()
 end
 local function ui()
 local MinhDucHubLoader = Instance.new("ScreenGui")
