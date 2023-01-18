@@ -45,7 +45,7 @@ TextBox.TextSize = 14.000
 TextBox.FocusLost:Connect(function(Enter,InputOBJ)
 if Enter then
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
-local res = game:HttpGet("https://www.notminhducgamingtv.tk/script/api/setkeyowner?Key="..TextBox.Text.."&HWID="..HWID)
+local res = "OK"--game:HttpGet("https://www.notminhducgamingtv.tk/script/api/setkeyowner?Key="..TextBox.Text.."&HWID="..HWID)
 repeat wait(1) until res == "OK"
 writefile("MinhDucHub/Key.txt",TextBox.Text)
 Load()
