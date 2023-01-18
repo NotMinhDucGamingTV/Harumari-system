@@ -67,7 +67,7 @@ UICorner_2.Parent = TextButton
 end
 if success then
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
-local response = game:HttpGet("https://www.notminhducgamingtv.tk/script/api/checkdevice?Key="..KeyContent.."&HWID="..HWID)
+local response = "OK" --game:HttpGet("https://www.notminhducgamingtv.tk/script/api/checkdevice?Key="..KeyContent.."&HWID="..HWID)
 if response == "Ok" then
 Load()
 elseif response == "wrongdevice" then
