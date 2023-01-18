@@ -84,10 +84,21 @@ local function GetQuest()
 			local LevelReq = 275
 			game.Players.LocalPlayer.PlayerGui.QuestGui.Quest.RemoteEvent:FireServer({QuestName, LevelReq})
 		elseif Level >= 300 and Level <= 325 then
-			local QuestName = "Defeat 7 Town Raiders"
+			local QuestName = "Defeat 6 Town Raiders"
 			local LevelReq = 300
 			game.Players.LocalPlayer.PlayerGui.QuestGui.Quest.RemoteEvent:FireServer({QuestName, LevelReq})
-
+		elseif Level >= 325 and Level <= 350 then
+			local QuestName = "Defeat 5 Wizards"
+			local LevelReq = 325
+			game.Players.LocalPlayer.PlayerGui.QuestGui.Quest.RemoteEvent:FireServer({QuestName, LevelReq})
+		elseif Level >= 350 and Level <= 375 then
+			local QuestName = "Defeat 6 Combative Sharks"
+			local LevelReq = 350
+			game.Players.LocalPlayer.PlayerGui.QuestGui.Quest.RemoteEvent:FireServer({QuestName, LevelReq})
+		elseif Level >= 375 and Level <= 400 then
+			local QuestName = "Defeat 6 Shark Captains"
+			local LevelReq = 375
+			game.Players.LocalPlayer.PlayerGui.QuestGui.Quest.RemoteEvent:FireServer({QuestName, LevelReq})
 		end
 	end)
 end
