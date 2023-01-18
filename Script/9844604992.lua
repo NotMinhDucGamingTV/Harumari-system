@@ -95,7 +95,7 @@ local function GetQuest()
 			local QuestName = "Defeat 6 Combative Sharks"
 			local LevelReq = 350
 			game.Players.LocalPlayer.PlayerGui.QuestGui.Quest.RemoteEvent:FireServer({QuestName, LevelReq})
-		elseif Level >= 375 and Level <= 400 then
+		elseif Level >= 375 then
 			local QuestName = "Defeat 6 Shark Captains"
 			local LevelReq = 375
 			game.Players.LocalPlayer.PlayerGui.QuestGui.Quest.RemoteEvent:FireServer({QuestName, LevelReq})
@@ -278,7 +278,9 @@ spawn(function ()
 			if not game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") and _G.chosenwp ~= nil then
 				game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild(_G.chosenwp))
 			elseif _G.chosenwp == nil then
-			elseif game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+			elseif game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") and game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Name ~= _G.chosenwp then
+				game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):UnequipTools()
+			elseif game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") and game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Name == _G.chosenwp then
 				if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Combat_Client1") then
 					game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Combat_Client1").RemoteEvent:FireServer(1)
 				end
