@@ -1,8 +1,8 @@
-makefolder("MinhDucHub")
-local KeyContent
-local success, Error = pcall(function()
-   KeyContent = readfile("MinhDucHub/Key.txt")
-end)
+--makefolder("MinhDucHub")
+--local KeyContent
+--local success, Error = pcall(function()
+ --  KeyContent = readfile("MinhDucHub/Key.txt")
+--end)
 local function Load()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Minh_Doc_Hub/main/Script/'..tostring(game.PlaceId)..'.lua'))()
 end
@@ -64,17 +64,25 @@ TextButton.TextColor3 = Color3.fromRGB(240, 240, 240)
 TextButton.TextSize = 14.000
 UICorner_2.CornerRadius = UDim.new(0, 30)
 UICorner_2.Parent = TextButton
+   local Functions = {}
+   function Functions:ChangeKeyText(Text)
+      TextBox.PlaceholderText(Text)
+      TextBox.Text = ""
+   end
+   return Functions
 end
-if success then
+local uiFunc = ui()
+if true then
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
 local response = "OK" --game:HttpGet("https://www.notminhducgamingtv.tk/script/api/checkdevice?Key="..KeyContent.."&HWID="..HWID)
 if response == "Ok" then
 Load()
+   uiFunc:ChangeKeyText("Authorized")
 elseif response == "wrongdevice" then
-ui()
+
 elseif response == "fakekey" then
-ui()
+
 end
 else
-ui()
+
 end
