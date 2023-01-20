@@ -74,9 +74,17 @@ game:GetService("RunService").Heartbeat:Connect(function ()
 	spawn(function()
 	if _G.AutoFillMat == true then
 		local Tycoon = nil
+		local ConveyorCount = 0
 		for i,v in pairs(workspace.Tycoons:GetChildren()) do
 			if v:FindFirstChild("Owner").Value == game.Players.LocalPlayer then
 				Tycoon = v
+			end
+		end
+		for i,v in pairs(Tycoon.Model.Lines:GetChildren()) do
+			local name = v.Name
+			ConveyorCount = 0
+			if name:match("Conveyor") then
+				ConveyorCount += 1
 			end
 		end
 		spawn(function ()			
@@ -100,4 +108,3 @@ game:GetService("RunService").Heartbeat:Connect(function ()
 	end
 		end)
 end)
-
