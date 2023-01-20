@@ -82,7 +82,6 @@ game:GetService("RunService").Heartbeat:Connect(function ()
 		end
 		for i,v in pairs(Tycoon.Model.Lines:GetChildren()) do
 			local name = v.Name
-			ConveyorCount = 0
 			if name:match("Conveyor") then
 				ConveyorCount += 1
 			end
@@ -96,14 +95,14 @@ game:GetService("RunService").Heartbeat:Connect(function ()
 		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Collect:InvokeServer("Glass")
 		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Collect:InvokeServer("Metal")
 		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Collect:InvokeServer("Glass")
-		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,2)))
-		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,2)))
-		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,2)))
-		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,2)))
-		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,2)))
-		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,2)))
-		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,2)))
-		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,2)))
+		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,ConveyorCount)))
+		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,ConveyorCount)))
+		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,ConveyorCount)))
+		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,ConveyorCount)))
+		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,ConveyorCount)))
+		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,ConveyorCount)))
+		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,ConveyorCount)))
+		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,ConveyorCount)))
 		end)
 	end
 		end)
