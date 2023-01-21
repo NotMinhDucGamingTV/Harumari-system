@@ -8,6 +8,7 @@ _G.AutoBid = false
 _G.AutoFillMat = false
 _G.antiAFK = false
 _G.debounce = false
+_G.Autoupgrade = false
 local AutoBidSwitch = HomeTabs:Switch("AutoBid",function(Value)
 	if Value == true then
 		_G.AutoBid = true
@@ -28,6 +29,22 @@ local AutoFillMatSwitch = HomeTabs:Switch("AutoFill Material",function(Value)
 	else
 		_G.AutoFillMat = false
 	end 
+end)
+local AutoUpgradeSwitch = HomeTabs:Switch("Auto Upgrade",function(Value)
+	if Value == true then
+		_G.Autoupgrade = true
+	else
+		_G.Autoupgrade = false
+	end 
+end)
+local AutoBuyNewCarSwitch = HomeTabs:Button("Buy New Car Types",function()
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.BuyNextCar:InvokeServer("Conveyor"..math.random(1,ConveyorCount))
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.BuyNextCar:InvokeServer("Conveyor"..math.random(1,ConveyorCount))
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.BuyNextCar:InvokeServer("Conveyor"..math.random(1,ConveyorCount))
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.BuyNextCar:InvokeServer("Conveyor"..math.random(1,ConveyorCount))
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.BuyNextCar:InvokeServer("Conveyor"..math.random(1,ConveyorCount))
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.BuyNextCar:InvokeServer("Conveyor"..math.random(1,ConveyorCount))
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.BuyNextCar:InvokeServer("Conveyor"..math.random(1,ConveyorCount))
 end)
 local AntiAFKSwitch = HomeTabs:Switch("AntiAFK",function(Value)
 	if Value == true then
@@ -67,7 +84,7 @@ game:GetService("RunService").Heartbeat:Connect(function ()
 			end
 		end
 		if Tycoon.Model.NPCs:FindFirstChild("BidderPrompt") ~= nil then
-		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.AcceptBid:InvokeServer(Tycoon.Model.NPCs.BidderPrompt,math.random(1, 3))
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.AcceptBid:InvokeServer(Tycoon.Model.NPCs:WaitForChild("BidderPrompt"),math.random(1, 3))
 		end
 	end
 	end)
@@ -104,6 +121,55 @@ game:GetService("RunService").Heartbeat:Connect(function ()
 		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,ConveyorCount)))
 		game.ReplicatedStorage.Packages.Knit.Services.MaterialService.RF.Drop:InvokeServer(Tycoon.Model.Lines:FindFirstChild("Conveyor"..math.random(1,ConveyorCount)))
 		end)
+	end
+		end)
+spawn(function()
+	if _G.Autoupgrade == true then
+		local Tycoon = nil
+		local ConveyorCount = 0
+		for i,v in pairs(workspace.Tycoons:GetChildren()) do
+			if v:FindFirstChild("Owner").Value == game.Players.LocalPlayer then
+				Tycoon = v
+			end
+		end
+		for i,v in pairs(Tycoon.Model.Lines:GetChildren()) do
+			local name = v.Name
+			if name:match("Conveyor") then
+				ConveyorCount += 1
+			end
+		end
+		spawn(function ()			
+		--workers
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Workers")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Workers")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Workers")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Workers")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Workers")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Workers")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Workers")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Workers")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Workers")
+		--Storages
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Storage")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Storage")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Storage")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Storage")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Storage")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Storage")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Storage")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Storage")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Storage")
+		--Parkings
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Parking")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Parking")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Parking")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Parking")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Parking")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Parking")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Parking")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Parking")
+		game.ReplicatedStorage.Packages.Knit.Services.TycoonService.RF.Upgrade:InvokeServer("Conveyor"..math.random(1,ConveyorCount),"Parking")
+		end)	
 	end
 		end)
 end)
