@@ -1,3 +1,4 @@
+setfpscap(1000)
 local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/NotMinhDucGamingTV/UI-Libs/main/MinhDucHubOriginal/Source.lua",true))()
 local Window = UI:Window("MinhDocHub")
 local SetSubcription = Window:SetSubscriptionManually("Freemium")
@@ -6,8 +7,10 @@ local HomeTabText = HomeTabs:Text(game:GetService("MarketplaceService"):GetProdu
 local HomeTabSeperator = HomeTabs:Seperator()
 local weaponlist = {}
 _G.autofarming = false
+_G.bringmob = false
 _G.autopickfruit = false
 _G.autofarmingskeleton = false
+_G.autofarmingMoney = false
 _G.autofarmingnecromancer = false
 _G.autoclick = false
 _G.chosenwp = nil
@@ -149,15 +152,29 @@ spawn(function()
 				if game.Players.LocalPlayer.PlayerGui.QuestGui.QuestNow.Visible == true then
 					for _,Enemy in pairs(workspace.Enemies:getChildren()) do
 						if Enemy.Name == game.Players.LocalPlayer.QuestValue.Target.Value then
-							if Enemy:FindFirstChild("Humanoid").Health ~= 0 and Enemy:FindFirstChild("HumanoidRootPart")then
-								repeat game:GetService("RunService").Heartbeat:wait()
-									_G.autoclick = true
-									Enemy.HumanoidRootPart.Anchored = true
-									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Enemy.HumanoidRootPart.Position - Vector3.new(4,0,0),Enemy.HumanoidRootPart.Position)
-								until Enemy:FindFirstChild("Humanoid").Health <= 0 or Enemy:FindFirstChild("Humanoid").Health == 0 or not Enemy:FindFirstChild("Humanoid") or not Enemy:FindFirstChild("HumanoidRootPart") or not _G.auto_farm or game.Players.LocalPlayer.PlayerGui.QuestGui.QuestNow.Visible == false
-								_G.autoclick = false
-								game.Players.LocalPlayer.Character.PrimaryPart.Anchored = true
-								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,1000,0)
+							if _G.bringmob == false then
+								if Enemy:FindFirstChild("Humanoid").Health ~= 0 and Enemy:FindFirstChild("HumanoidRootPart")then
+									repeat game:GetService("RunService").Heartbeat:wait()
+										_G.autoclick = true
+										Enemy.HumanoidRootPart.Anchored = true
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Enemy.HumanoidRootPart.Position - Vector3.new(4,0,0),Enemy.HumanoidRootPart.Position)
+									until Enemy:FindFirstChild("Humanoid").Health <= 0 or Enemy:FindFirstChild("Humanoid").Health == 0 or not Enemy:FindFirstChild("Humanoid") or not Enemy:FindFirstChild("HumanoidRootPart") or not _G.auto_farm or game.Players.LocalPlayer.PlayerGui.QuestGui.QuestNow.Visible == false
+									_G.autoclick = false
+									game.Players.LocalPlayer.Character.PrimaryPart.Anchored = true
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,1000,0)
+								end
+							elseif _G.bringmob == true then
+								if Enemy:FindFirstChild("Humanoid").Health ~= 0 and Enemy:FindFirstChild("HumanoidRootPart")then
+									repeat game:GetService("RunService").Heartbeat:wait()
+										_G.autoclick = true
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,1000,0)
+										Enemy.HumanoidRootPart.Anchored = true
+										Enemy.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(4,0,0),game.Players.LocalPlayer.Character.HumanoidRootPart.Position)	
+									until Enemy:FindFirstChild("Humanoid").Health <= 0 or Enemy:FindFirstChild("Humanoid").Health == 0 or not Enemy:FindFirstChild("Humanoid") or not Enemy:FindFirstChild("HumanoidRootPart") or not _G.auto_farm or game.Players.LocalPlayer.PlayerGui.QuestGui.QuestNow.Visible == false
+									_G.autoclick = false
+									game.Players.LocalPlayer.Character.PrimaryPart.Anchored = true
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,1000,0)
+								end
 							end
 						end		
 					end
@@ -202,7 +219,24 @@ spawn(function()
 		end
 	end)
 end)
-
+local BringMobSwitch = HomeTabs:Switch("BringMob (Laggy)",function(Value)
+	if Value == true then
+		_G.BringMob = true
+	else
+		_G.BringMob = false
+	end
+end)
+local AutofarmMoneySwitch = HomeTabs:Switch("Autofarm Money (Laggy)",function(Value)
+	if Value == true then
+		_G.autofarmingMoney = true
+		_G.autoclick = true
+		game.Players.LocalPlayer.Character.PrimaryPart.Anchored = true
+	else
+		_G.autofarmingMoney = false
+		_G.autoclick = false
+		game.Players.LocalPlayer.Character.PrimaryPart.Anchored = false
+	end 
+end)
 local AutofarmSkeletonSwitch = HomeTabs:Switch("Autofarm Heavenly Skeleton",function(Value)
 	if Value == true then
 		_G.autofarmingskeleton = true
@@ -315,6 +349,16 @@ spawn(function ()
 			end
 			wait()
 		end
+		if _G.autofarmingMoney == true then
+			for _,Enemy in pairs(workspace.Enemies:getChildren()) do
+				if Enemy:IsA("Model") then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,1000,0)
+					Enemy.HumanoidRootPart.Anchored = true
+					Enemy.HumanoidRootPart.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(4,0,0),game.Players.LocalPlayer.Character.HumanoidRootPart.Position)	
+				end
+			end
+			wait()
+		end
 		if _G.autofarmingnecromancer == true then
 			for _,Enemy in pairs(workspace.Enemies:getChildren()) do
 				if Enemy.Name == "Dark Necromancer" then
@@ -325,12 +369,9 @@ spawn(function ()
 			wait()
 		end
 		if _G.autopickfruit == true then
-			if _G.fruitposindex == 20 then
-				_G.fruitposindex = 1
-			else
-				_G.fruitposindex += 1
+				for  i,v in pairs(workspace.DevilFruit:getChildren())  do
+				v.Handle.CFrame = game.Players.LocalPlayer.Character.PrimaryPart.CFrame
 			end
-			game.Players.LocalPlayer.Character.PrimaryPart.CFrame = CFrame.new(workspace.FruitSpawn.FruitSpawnPoint:FindFirstChild("Spawn".._G.fruitposindex).Position)
 			wait(1)
 		end
 	end)
