@@ -152,6 +152,7 @@ TextBox.FocusLost:Connect(function(Entered)
 		repeat wait(1) until res ~= nil
 		if res == "authenticated" then
 			loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))()
+			Harumariswhitlistsystem:Destroy()
 		elseif res == "wrongdevice" then
 			game.Players.LocalPlayer:Kick("Key are for single device only, if you want to reset your HWID (Which is used for device detection) please access 'https://harumari-system.notminhducgamingtv.tk/resethwid'")
 		elseif res == "invalid key" then
