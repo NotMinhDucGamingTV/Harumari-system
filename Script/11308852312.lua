@@ -1,5 +1,5 @@
 local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/NotMinhDucGamingTV/UI-Libs/main/MinhDucHubOriginal/Source.lua",true))()
-local Window = UI:Window("MinhDocHub")
+local Window = UI:Window("HARUMARI'S SYSTEM")
 local SetSubcription = Window:SetSubscriptionManually("Freemium")
 local HomeTabs,FruitsTabs,RaidTabs,MiscTabs = Window:Tabs("Home","rbxassetid://4034483344"),Window:Tabs("Fruits","rbxassetid://6031302921"),Window:Tabs("Raid","rbxassetid://6031302921"),Window:Tabs("Misc","rbxassetid://6031302921")
 local HomeTabText = HomeTabs:Text(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name)
