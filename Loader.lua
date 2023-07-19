@@ -138,7 +138,9 @@ XButton.MouseLeave:Connect(function()
 	local tween = game:GetService("TweenService"):Create(XButton,TweenInfo.new(.75),{BackgroundTransparency = 1})
 	tween:Play()
 end)
-
+XButton.MouseButton1Down:Connect(function()
+	Harumariswhitlistsystem:Destroy()
+end)
 UICorner_4.CornerRadius = UDim.new(0, 5)
 UICorner_4.Parent = XButton
 
