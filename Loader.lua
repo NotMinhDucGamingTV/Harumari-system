@@ -116,6 +116,12 @@ end)
 TextButton.MouseLeave:Connect(function()
 	TextButton.Text = "Here :>"
 end)
+TextButton.MouseButton1Down:Connect(function()
+	setclipboard("https://harumari-system.notminhducgamingtv.tk/getkey")
+	TextBox.Text = "Link copied, paste it in a new browser tabs"
+	wait(1)
+	TextBox.Text = ""
+end)
 XButton.Name = "X"
 XButton.Parent = Topbar
 XButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
