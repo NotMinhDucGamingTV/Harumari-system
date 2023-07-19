@@ -1,6 +1,6 @@
 setfpscap(1000)
 local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/NotMinhDucGamingTV/UI-Libs/main/MinhDucHubOriginal/Source.lua",true))()
-local Window = UI:Window("MinhDocHub")
+local Window = UI:Window("HARUMARI'S SYSTEM")
 local SetSubcription = Window:SetSubscriptionManually("Freemium")
 local HomeTabs = Window:Tabs("Home","rbxassetid://4034483344")
 _G.Autopick = false
