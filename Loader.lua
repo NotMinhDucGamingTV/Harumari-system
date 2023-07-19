@@ -149,7 +149,7 @@ TextBox.FocusLost:Connect(function(Entered)
 		res = game:HttpGet("https://harumari-system.notminhducgamingtv.tk/api/checkkey?key="..TextBox.Text.."&hwid="..hwid)
 		repeat wait(1) until res ~= nil
 		if res == "authenticated" then
-			
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Minh_Doc_Hub/main/Script/'..tostring(game.PlaceId)..'.lua'))()
 		elseif res == "wrongdevice" then
 			game.Players.LocalPlayer:Kick("Key are for single device only, if you want to reset your HWID (Which is used for device detection) please access 'https://harumari-system.notminhducgamingtv.tk/resethwid'")
 		elseif res == "invalid key" then
