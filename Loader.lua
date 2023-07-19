@@ -1,88 +1,159 @@
---makefolder("MinhDucHub")
---local KeyContent
---local success, Error = pcall(function()
- --  KeyContent = readfile("MinhDucHub/Key.txt")
---end)
-local function Load()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Minh_Doc_Hub/main/Script/'..tostring(game.PlaceId)..'.lua'))()
-end
-local function ui()
-local MinhDucHubLoader = Instance.new("ScreenGui")
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local Harumariswhitlistsystem = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
-local TextBox = Instance.new("TextBox")
+local Topbar = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
-local TextButton = Instance.new("TextButton")
+local ImageButton = Instance.new("ImageButton")
+local Title = Instance.new("TextLabel")
 local UICorner_2 = Instance.new("UICorner")
+local TextBox = Instance.new("TextBox")
+local UICorner_3 = Instance.new("UICorner")
+local XButton = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local KeyLocationTitle = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+
 --Properties:
-MinhDucHubLoader.Name = "MinhDucHubLoader"
-MinhDucHubLoader.Parent = game.CoreGui
-MinhDucHubLoader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Harumariswhitlistsystem.Name = "Harumari's whitelist system"
+Harumariswhitlistsystem.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Harumariswhitlistsystem.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
 Main.Name = "Main"
-Main.Parent = MinhDucHubLoader
-Main.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+Main.Parent = Harumariswhitlistsystem
+Main.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Main.BorderSizePixel = 0
 Main.ClipsDescendants = true
-Main.Position = UDim2.new(0.12485414, 0, 0.181632653, 0)
-Main.Size = UDim2.new(0, 268, 0, 86)
-TextLabel.Parent = Main
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.BorderSizePixel = 0
-TextLabel.Size = UDim2.new(1, 0, 0.319999993, 0)
-TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = "MinhDucHub"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextSize = 14.000
+Main.Position = UDim2.new(0.135294124, 0, 0.119013064, 0)
+Main.Size = UDim2.new(0, 293, 0, 83)
+
+Topbar.Name = "Topbar"
+Topbar.Parent = Main
+Topbar.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+Topbar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Topbar.BorderSizePixel = 0
+Topbar.Size = UDim2.new(1, 0, 0.337349385, 0)
+
+UICorner.CornerRadius = UDim.new(0, 10)
+UICorner.Parent = Topbar
+
+ImageButton.Parent = Topbar
+ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageButton.BackgroundTransparency = 1.000
+ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0.0170648471, 2, 0.0357142873, 5)
+ImageButton.Size = UDim2.new(0.0580204763, 0, 0.607142866, 0)
+ImageButton.Image = "http://www.roblox.com/asset/?id=14118133946"
+
+Title.Name = "Title"
+Title.Parent = Topbar
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0.0580204763, 15, 0, -1)
+Title.Size = UDim2.new(0.430034131, 0, 1, 0)
+Title.Font = Enum.Font.SourceSansSemibold
+Title.Text = "HARUMARI'S SYSTEM"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 14.000
+Title.TextXAlignment = Enum.TextXAlignment.Left
+
+UICorner_2.CornerRadius = UDim.new(0, 10)
+UICorner_2.Parent = Main
+
 TextBox.Parent = Main
-TextBox.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
-TextBox.Position = UDim2.new(0.12686567, 0, 0.659844995, 0)
-TextBox.Size = UDim2.new(0, 200, 0, 22)
+TextBox.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.BorderSizePixel = 0
+TextBox.Position = UDim2.new(0.0238907859, 0, 0.397590369, 0)
+TextBox.Size = UDim2.new(0, 278, 0, 23)
+TextBox.ClearTextOnFocus = false
 TextBox.Font = Enum.Font.SourceSans
-TextBox.PlaceholderText = "Insert Activation Key"
+TextBox.PlaceholderText = "Insert Key"
 TextBox.Text = ""
-TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextBox.TextSize = 14.000
-TextBox.FocusLost:Connect(function(Enter,InputOBJ)
-if Enter then
-local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
-local res = "OK"--game:HttpGet("https://www.notminhducgamingtv.tk/script/api/setkeyowner?Key="..TextBox.Text.."&HWID="..HWID)
-repeat wait(1) until res == "OK"
-writefile("MinhDucHub/Key.txt",TextBox.Text)
-Load()
-MinhDucHubLoader:Destroy()
-end
-end) 
-UICorner.CornerRadius = UDim.new(0, 30)
-UICorner.Parent = TextBox
+
+UICorner_3.CornerRadius = UDim.new(0, 5)
+UICorner_3.Parent = TextBox
+
+KeyLocationTitle.Name = "KeyLocationTitle"
+KeyLocationTitle.Parent = Main
+KeyLocationTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+KeyLocationTitle.BackgroundTransparency = 1.000
+KeyLocationTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+KeyLocationTitle.BorderSizePixel = 0
+KeyLocationTitle.Position = UDim2.new(0.191126287, 16, 0.710843384, 0)
+KeyLocationTitle.Size = UDim2.new(0, 102, 0, 17)
+KeyLocationTitle.Font = Enum.Font.SourceSans
+KeyLocationTitle.Text = "You can get a key at"
+KeyLocationTitle.TextColor3 = Color3.fromRGB(203, 203, 203)
+KeyLocationTitle.TextSize = 14.000
+KeyLocationTitle.TextXAlignment = Enum.TextXAlignment.Left
+
 TextButton.Parent = Main
-TextButton.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
-TextButton.Position = UDim2.new(0.13059701, 0, 0.319999993, 0)
-TextButton.Size = UDim2.new(0, 200, 0, 22)
+TextButton.RichText = true
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.539249122, 12, 0.710843384, 0)
+TextButton.Size = UDim2.new(0, 43, 0, 17)
 TextButton.Font = Enum.Font.SourceSans
-TextButton.Text = "Get Activation Key"
-TextButton.TextColor3 = Color3.fromRGB(240, 240, 240)
+TextButton.Text = "Here :>"
+TextButton.TextColor3 = Color3.fromRGB(203, 203, 203)
 TextButton.TextSize = 14.000
-UICorner_2.CornerRadius = UDim.new(0, 30)
-UICorner_2.Parent = TextButton
-   local Functions = {}
-   function Functions:ChangeKeyText(Text)
-      TextBox.PlaceholderText(Text)
-      TextBox.Text = ""
-   end
-   return Functions
-end
-local uiFunc = ui()
-if true then
-local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
-local response = "OK" --game:HttpGet("https://www.notminhducgamingtv.tk/script/api/checkdevice?Key="..KeyContent.."&HWID="..HWID)
-if response == "Ok" then
-Load()
-   uiFunc:ChangeKeyText("Authorized")
-elseif response == "wrongdevice" then
+TextButton.MouseEnter:Connect(function()
+	TextButton.Text = "<u>Here :></u>"
+end)
+TextButton.MouseLeave:Connect(function()
+	TextButton.Text = "Here :>"
+end)
+XButton.Name = "X"
+XButton.Parent = Topbar
+XButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+XButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+XButton.BorderSizePixel = 0
+XButton.Position = UDim2.new(0.843003392, 17, 0.142857149, 1)
+XButton.Size = UDim2.new(0, 21, 0, 21)
+XButton.Font = Enum.Font.SourceSans
+XButton.Text = "X"
+XButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+XButton.TextScaled = true
+XButton.BackgroundTransparency = 1
+XButton.TextSize = 14.000
+XButton.TextWrapped = true
+XButton.MouseEnter:Connect(function()
+	local tween = game:GetService("TweenService"):Create(XButton,TweenInfo.new(.5),{BackgroundTransparency = 0})
+	tween:Play()
+end)
+XButton.MouseLeave:Connect(function()
+	local tween = game:GetService("TweenService"):Create(XButton,TweenInfo.new(.75),{BackgroundTransparency = 1})
+	tween:Play()
+end)
 
-elseif response == "fakekey" then
+UICorner_4.CornerRadius = UDim.new(0, 5)
+UICorner_4.Parent = XButton
 
-end
-else
-
-end
+TextBox.FocusLost:Connect(function(Entered)
+	if Entered then
+		local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
+		local res = nil 
+		res = game:HttpGet("https://harumari-system.notminhducgamingtv.tk/api/checkkey?key="..TextBox.Text.."&hwid="..hwid)
+		repeat wait(1) until res ~= nil
+		if res == "authenticated" then
+			
+		elseif res == "wrongdevice" then
+			game.Players.LocalPlayer:Kick("Key are for single device only, if you want to reset your HWID (Which is used for device detection) please access 'https://harumari-system.notminhducgamingtv.tk/resethwid'")
+		elseif res == "invalid key" then
+			TextBox.Text = "Key not found or invalid"
+		end
+	end
+end)
