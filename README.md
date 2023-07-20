@@ -27,8 +27,10 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Ha
 ```
  
  # About keys:
-There are two (2) types of key.\n
-Type 1: Free keys, which can be obtained at [here](https://harumari-system.notminhducgamingtv.tk/getkey) (Note: If you try to bypass (jumping from stage 1 to stage 3) your stage will be reseted)\n 
+There are two (2) types of key.
+
+Type 1: Free keys, which can be obtained at [here](https://harumari-system.notminhducgamingtv.tk/getkey) (Note: If you try to bypass (jumping from stage 1 to stage 3) your stage will be reseted)
+
 Type 2: Premium, which can be obtained by buying them (30 days)\n
 
 
