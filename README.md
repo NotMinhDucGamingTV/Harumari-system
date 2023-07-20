@@ -3,6 +3,7 @@ Harumari System is a comprehensive platform designed to provide top-of-the-line 
 # Features:
 <details><summary>Available Features:</summary>
  Last Updated: 05:50 - 7/20/2023
+ 
 | Features             | Availability |
 | -------------------- | ------------ |
 | Anti-Detection       |     ✅       |
