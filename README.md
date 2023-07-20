@@ -21,4 +21,11 @@ Harumari System is a comprehensive platform designed to provide top-of-the-line 
 
  </details>
 
+# Loaders:
+```lua 
+loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Loader.lua'))()
+```
+ 
+ 
+
 
