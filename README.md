@@ -12,7 +12,7 @@ Harumari System is a comprehensive platform designed to provide top-of-the-line 
 
  </details>
  
- <details align="right"><summary align="right">Unavailable Features:</summary>
+ <details align="left"><summary align="left">Unavailable Features:</summary>
  Last Updated: 05:50 - 7/20/2023(UTC)
  
 | Features             | Availability |
