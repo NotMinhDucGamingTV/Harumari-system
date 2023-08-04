@@ -155,6 +155,7 @@ TextBox.FocusLost:Connect(function(Entered)
 		 print("Waiting for response from webserver")
 		end
 		if res == "authenticated" then
+			writefile("HarumariSystem/Key.txt",TextBox.Text)
 			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
 			if script then
 				script()
@@ -164,6 +165,7 @@ TextBox.FocusLost:Connect(function(Entered)
 			wait(1)
 			Harumariswhitlistsystem:Destroy()
 		elseif res == "authenticated-premium" then
+			writefile("HarumariSystem/Key.txt",TextBox.Text)
 			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'-premium.lua'))
 			if script then
 				script()
