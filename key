@@ -26,10 +26,11 @@ Harumariswhitlistsystem.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Main.Name = "Main"
 Main.Parent = Harumariswhitlistsystem
 Main.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+Main.AnchorPoint = Vector2.new(0.5, 0.5)
 Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Main.BorderSizePixel = 0
 Main.ClipsDescendants = true
-Main.Position = UDim2.new(0.135294124, 0, 0.119013064, 0)
+Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 Main.Size = UDim2.new(0, 293, 0, 83)
 
 Topbar.Name = "Topbar"
