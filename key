@@ -158,7 +158,20 @@ TextBox.FocusLost:Connect(function(Entered)
 		res = game:HttpGet("https://harumari-system.notminhducgamingtv.tk/api/checkkey?key="..TextBox.Text.."&hwid="..hwid)
 		repeat wait(1) until res ~= nil
 		if res == "authenticated" then
-			loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))()
+			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
+			if script then
+				script()
+			else
+				TextBox.Text = "This game is not supported."
+			end
+			Harumariswhitlistsystem:Destroy()
+		elseif res == "authenticated-premium"
+			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'-premium.lua'))
+			if script then
+				script()
+			else
+				TextBox.Text = "This game is not supported."
+			end
 			Harumariswhitlistsystem:Destroy()
 		elseif res == "wrongdevice" then
 			game.Players.LocalPlayer:Kick("Key are for single device only, if you want to reset your HWID (Which is used for device detection) please access 'https://harumari-system.notminhducgamingtv.tk/resethwid'")
