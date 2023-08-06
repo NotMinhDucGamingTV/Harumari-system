@@ -1,0 +1,197 @@
+makefolder("HarumariSystem")
+local KeyContent = nil
+local success, Error = pcall(function()
+   KeyContent = readfile("HarumariSystem/Key.HSys")
+end)
+print(KeyContent)
+local Loader = Instance.new("ScreenGui")
+local LoadingStage = "Preload"
+local Placeholder = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+local Credit = Instance.new("TextLabel")
+local GameText = Instance.new("TextLabel")
+local Loading = Instance.new("TextLabel")
+local ImageLabel = Instance.new("ImageLabel")
+local UICorner_2 = Instance.new("UICorner")
+
+Loader.Name = "HarumariSystemLoader"
+Loader.Parent = game.CoreGui
+Loader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Placeholder.Name = "Placeholder"
+Placeholder.Parent = Loader
+Placeholder.AnchorPoint = Vector2.new(0.5, 0.5)
+Placeholder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Placeholder.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Placeholder.BorderSizePixel = 0
+Placeholder.Position = UDim2.new(0.5, 0, 0.5, 0)
+Placeholder.Size = UDim2.new(0, 518, 0, 0)
+Placeholder.ClipsDescendants = true
+
+UICorner.CornerRadius = UDim.new(0, 10)
+UICorner.Parent = Placeholder
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(38, 38, 38)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(71, 64, 64))}
+UIGradient.Offset = Vector2.new(0, 0.5)
+UIGradient.Rotation = 30
+UIGradient.Parent = Placeholder
+local UiTween = game:GetService("TweenService"):Create(Placeholder,TweenInfo.new(1),{Size = UDim2.new(0, 518, 0, 271), Position = UDim2.new(0.5, 0, 0.5, 0)})
+UiTween:Play()
+UiTween.Completed:Connect(function()
+Credit.Name = "Credit"
+Credit.Parent = Placeholder
+Credit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Credit.BackgroundTransparency = 1.000
+Credit.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Credit.BorderSizePixel = 0
+Credit.Position = UDim2.new(0.704633176, 0, 0.90822351, 0)
+Credit.Size = UDim2.new(0, 143, 0, 18)
+Credit.Font = Enum.Font.SourceSans
+Credit.Text = "Harumari's System - 2023®"
+Credit.TextColor3 = Color3.fromRGB(255, 255, 255)
+Credit.TextScaled = true
+Credit.TextSize = 14.000
+Credit.TextWrapped = true
+Credit.TextTransparency = 1
+game:GetService("TweenService"):Create(Credit,TweenInfo.new(1),{TextTransparency = 0}):Play()
+GameText.Name = "GameText"
+GameText.Parent = Placeholder
+GameText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+GameText.BackgroundTransparency = 1.000
+GameText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+GameText.BorderSizePixel = 0
+GameText.Position = UDim2.new(0.375589848, 0, 0.712651551, 0)
+GameText.Size = UDim2.new(0, 291, 0, 28)
+GameText.Font = Enum.Font.SourceSans
+GameText.Text = "Blox Fruit - Third sea"
+GameText.TextColor3 = Color3.fromRGB(255, 255, 255)
+GameText.TextScaled = true
+GameText.TextSize = 14.000
+GameText.TextWrapped = true
+GameText.TextXAlignment = Enum.TextXAlignment.Right
+GameText.TextTransparency = 1
+game:GetService("TweenService"):Create(GameText,TweenInfo.new(1),{TextTransparency = 0}):Play()
+Loading.Name = "Loading"
+Loading.Parent = Placeholder
+Loading.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Loading.BackgroundTransparency = 1.000
+Loading.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Loading.BorderSizePixel = 0
+Loading.Position = UDim2.new(0.0250965245, 0, 0.90822351, 0)
+Loading.Size = UDim2.new(0, 80, 0, 18)
+Loading.Font = Enum.Font.SourceSans
+Loading.Text = "Loading..."
+Loading.TextColor3 = Color3.fromRGB(255, 255, 255)
+Loading.TextScaled = true
+Loading.TextSize = 14.000
+Loading.TextWrapped = true
+Loading.TextXAlignment = Enum.TextXAlignment.Left
+Loading.TextTransparency = 1
+game:GetService("TweenService"):Create(Loading,TweenInfo.new(1),{TextTransparency = 0}):Play()
+ImageLabel.Parent = Placeholder
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1
+ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(0.745173752, 0, 0.118081182, 0)
+ImageLabel.Size = UDim2.new(0, 100, 0, 100)
+ImageLabel.Image = "rbxassetid://14118133946"
+ImageLabel.ImageTransparency = 1
+game:GetService("TweenService"):Create(ImageLabel,TweenInfo.new(1),{ImageTransparency = 0}):Play()
+UICorner_2.CornerRadius = UDim.new(1, 0)
+UICorner_2.Parent = ImageLabel
+GameText.Text = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+local function ASYB_fake_script()
+	while LoadingStage ~= nil  do
+	if LoadingStage == "Preload" then
+		Loading.Text = "Loading."
+		wait(.5)
+		Loading.Text = "Loading.."
+		wait(.5)
+		Loading.Text = "Loading..."
+		wait(.5)
+	elseif LoadingStage == "Key" then
+	Loading.Text = "Checking Key."
+		wait(.5)
+		Loading.Text = "Checking Key.."
+		wait(.5)
+		Loading.Text = "Checking Key..."
+		wait(.5)
+	else 
+	break
+	end
+	end
+end
+coroutine.wrap(ASYB_fake_script)()
+
+wait(3)
+game:GetService("TweenService"):Create(Loading,TweenInfo.new(1),{TextTransparency = 1}):Play()
+wait(1)
+LoadingStage = "Key"
+wait(1)
+game:GetService("TweenService"):Create(Loading,TweenInfo.new(1),{TextTransparency = 0}):Play()
+wait(2)
+if not success then
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/key'))()
+	game:GetService("TweenService"):Create(Loading,TweenInfo.new(1),{TextTransparency = 1}):Play()
+	game:GetService("TweenService"):Create(ImageLabel,TweenInfo.new(1),{ImageTransparency = 1}):Play()
+	game:GetService("TweenService"):Create(GameText,TweenInfo.new(1),{TextTransparency = 1}):Play()
+	game:GetService("TweenService"):Create(Credit,TweenInfo.new(1),{TextTransparency = 1}):Play()
+	wait(.5)
+	local CloseTween = game:GetService("TweenService"):Create(Placeholder,TweenInfo.new(1),{Size = UDim2.new(0, 518, 0, 0), Position = UDim2.new(0.5, 0, 0.5, 0)})
+	CloseTween:Play()
+	CloseTween.Completed:Connect(function()
+		Loader:Destroy()
+	end)
+	return
+	else
+	local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
+		local res = nil 
+		res = game:HttpGet("https://harumari-system.notminhducgamingtv.tk/api/checkkey?key="..KeyContent.."&hwid="..hwid)
+		while res == nil do
+		 print("Waiting for response from webserver")
+		end
+		if res == "authenticated" then
+			_G.Type = "FREE"
+			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
+			if script then
+				script()
+			else
+				LoadingStage = "Failed"
+				wait(1)
+				Loading.Text = "This game is not supported."
+			end
+	game:GetService("TweenService"):Create(Loading,TweenInfo.new(1),{TextTransparency = 1}):Play()
+	game:GetService("TweenService"):Create(ImageLabel,TweenInfo.new(1),{ImageTransparency = 1}):Play()
+	game:GetService("TweenService"):Create(GameText,TweenInfo.new(1),{TextTransparency = 1}):Play()
+	game:GetService("TweenService"):Create(Credit,TweenInfo.new(1),{TextTransparency = 1}):Play()
+	wait(.5)
+	local CloseTween = game:GetService("TweenService"):Create(Placeholder,TweenInfo.new(1),{Size = UDim2.new(0, 518, 0, 0), Position = UDim2.new(0.5, 0, 0.5, 0)})
+	CloseTween:Play()
+	CloseTween.Completed:Connect(function()
+		Loader:Destroy()
+	end)
+		elseif res == "authenticated-premium" then
+		_G.Type = "PREMIUM"
+		local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'-premium.lua'))
+			if script then
+				script()
+			else
+				LoadingStage = "Failed"
+				wait(1)
+				Loading.Text = "This game is not supported."
+			end
+	game:GetService("TweenService"):Create(Loading,TweenInfo.new(1),{TextTransparency = 1}):Play()
+	game:GetService("TweenService"):Create(ImageLabel,TweenInfo.new(1),{ImageTransparency = 1}):Play()
+	game:GetService("TweenService"):Create(GameText,TweenInfo.new(1),{TextTransparency = 1}):Play()
+	game:GetService("TweenService"):Create(Credit,TweenInfo.new(1),{TextTransparency = 1}):Play()
+	wait(.5)
+	local CloseTween = game:GetService("TweenService"):Create(Placeholder,TweenInfo.new(1),{Size = UDim2.new(0, 518, 0, 0), Position = UDim2.new(0.5, 0, 0.5, 0)})
+	CloseTween:Play()
+	CloseTween.Completed:Connect(function()
+		Loader:Destroy()
+	end)
+		end
+end
+end)
