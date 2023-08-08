@@ -172,7 +172,13 @@ TextBox.FocusLost:Connect(function(Entered)
 			if script then
 				script()
 			else
+				TextBox.Text = "This game is not supported for premium yet,using free key."
+local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
+			if script then
+				script()
+			else
 				TextBox.Text = "This game is not supported."
+			end
 			end
 			wait(1)
 			Harumariswhitlistsystem:Destroy()
