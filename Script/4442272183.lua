@@ -1,6 +1,6 @@
 local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/NotMinhDucGamingTV/UI-Libs/main/haru-sleek/source",true))()
-local type = "Free"
-if _G.Type == "PREMIUM" then
+local type =                         readfile("HarumariSystem/Type.HSys") or"Free"
+if _G.Type == "Premium" then
 	type = "Premium"
 end
 local Window = UI:CreateWindow("Harumari's System - "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.. " - "..type)
