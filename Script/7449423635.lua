@@ -1,20 +1,24 @@
-local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/NotMinhDucGamingTV/UI-Libs/main/MinhDucHubOriginal/Source.lua",true))()
-local Window = UI:Window("Harumari's System")
+local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/NotMinhDucGamingTV/UI-Libs/main/haru-sleek/source",true))()
 local type = "Free"
 if _G.Type == "PREMIUM" then
 	type = "Premium"
 end
+local Window = UI:CreateWindow("Harumari's System - "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.. " - "..type)
 	weaponlist = {}
 	for i,v in pairs(game.Players.LocalPlayer.Backpack:getChildren()) do
 		if v:IsA("Tool") then
 			table.insert(weaponlist, v.Name)
 		end
 	end
-Window:SetSubscriptionManually(type)
-local HomeTabs,FruitsTabs,StatsTabs,RaidTabs,ShopTabs,MiscTabs = Window:Tabs("Home","rbxassetid://4034483344"),Window:Tabs("Fruits","rbxassetid://6031302921"),Window:Tabs("Stats","rbxassetid://6031302921"),Window:Tabs("Raid","rbxassetid://6031302921"),Window:Tabs("Shops","rbxassetid://6031302921"),Window:Tabs("Misc","rbxassetid://6031302921")
---- main ---
-local HomeTabText = HomeTabs:Text("Game: "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name)
-local HomeTabSeperator = HomeTabs:Seperator()
+local HomeTabs = Window:CreateTab("Home")
+local TPTabs = Window:CreateTab("Teleports")
+local FruitsTabs = Window:CreateTab("Fruits")
+local StatsTabs = Window:CreateTab("Stats")
+local RaidTabs = Window:CreateTab("Raid")
+local ShopTabs = Window:CreateTab("Shops")
+local PlayerTabs = Window:CreateTab("Player")
+local MiscTabs = Window:CreateTab("Misc")
+--- main --
 function CheckLevel()
 	local ml = game:GetService("Players").LocalPlayer.Data.Level.Value
 		if ml == 1500 or ml <= 1524 then
@@ -332,31 +336,72 @@ spawn(function()
 		end
 	end
 end)
-local HomeTabDropdown = HomeTabs:Dropdown("Weapon",weaponlist,function(Value)
+local HomeTabDropdown = HomeTabs:CreateDropdown("Weapon",weaponlist,function(Value)
 	_G.SelectWeapon = Value
 end)
-local HomeTabButton = HomeTabs:Button("Refresh list",function()
+local HomeTabButton = HomeTabs:CreateButton("Refresh list",function()
 	weaponlist = {}
 	for i,v in pairs(game.Players.LocalPlayer.Backpack:getChildren()) do
 		if v:IsA("Tool") then
 			table.insert(weaponlist, v.Name)
 		end
 	end
-	HomeTabDropdown:RenewItem(weaponlist)
+	HomeTabDropdown:RefreshList(weaponlist)
 end)
-local AutofarmSwitch = HomeTabs:Switch("Autofarm",function(Value)
+local AutofarmSwitch = HomeTabs:CreateSwitch("Autofarm",function(Value)
 	if Value == true then
 		_G.auto_farm = true
 	else
 		_G.auto_farm = false
 	end 
 end)
-local AFKSwitch = HomeTabs:Switch("AntiAFK",function(Value)
+local AFKSwitch = HomeTabs:CreateSwitch("AntiAFK",function(Value)
 	if Value == true then
 		_G.anti_afk = true
 	else
 		_G.anti_afk = false
 	end 
+end)
+local AutoV4Switch = HomeTabs:CreateSwitch("Auto V4",function(Value)
+	if Value == true then
+		_G.auto_v4 = true
+	else
+		_G.auto_v4 = false
+	end 
+end)
+local BigHitBoxSwitch = HomeTabs:CreateSwitch("Big Hitbox",function(Value)
+	if Value == true then
+		_G.big_hitbox = true
+	else
+		_G.big_hitbox = false
+	end 
+end)
+local AutoSuperSwitch = HomeTabs:CreateSwitch("Get Super Human",function(Value)
+	if Value == true then
+		_G.auto_superhuman = true
+	else
+		_G.auto_superhuman = false
+	end 
+end)
+local SuperFastSwitch = HomeTabs:CreateSwitch("Super Fast Attack",function(Value)
+	if Value == true then
+		_G.Fastattack = true
+	else
+		_G.Fastattack = false
+	end 
+end)
+spawn(function()
+	game:GetService("RunService").RenderStepped:Connect(function()
+		if _G.auto_v4 == true then
+			game:GetService("Players").LocalPlayer.Backpack.Awakening.RemoteFunction:InvokeServer(true)
+		end
+		if _G.big_hitbox == true then
+			local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+			local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
+			Camera:Stop()
+			getupvalues(CombatFramework)[2].activeController.hitboxMagnitude = 1000
+		end
+	end)
 end)
 spawn(function()
 	local vu = game:GetService("VirtualUser")
@@ -366,6 +411,116 @@ spawn(function()
 			wait(1)
 			vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 		end
+	end)
+end)
+spawn(function()
+	game:GetService("RunService").RenderStepped:Connect(function()
+		pcall(function()
+			if _G.auto_superhuman then
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Combat") or game.Players.LocalPlayer.Character:FindFirstChild("Combat") then
+					local args = {
+						[1] = "BuyBlackLeg"
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end   
+				if game.Players.LocalPlayer.Character:FindFirstChild("Superhuman") or game.Players.LocalPlayer.Backpack:FindFirstChild("Superhuman") then
+					_G.Weapon = "Superhuman"
+				end  
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value <= 299  then
+					_G.Weapon = "Black Leg"
+				end
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Electro") and game.Players.LocalPlayer.Backpack:FindFirstChild("Electro").Level.Value <= 299  then
+					_G.Weapon = "Electro"
+				end
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate").Level.Value <= 299  then
+					_G.Weapon = "Fishman Karate"
+				end
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw").Level.Value <= 299  then
+					_G.Weapon = "Dragon Claw"
+				end
+				if game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value <= 299  then
+					_G.Weapon = "Black Leg"
+				end
+				if game.Players.LocalPlayer.Character:FindFirstChild("Electro") and game.Players.LocalPlayer.Character:FindFirstChild("Electro").Level.Value <= 299  then
+					_G.Weapon = "Electro"
+				end
+				if game.Players.LocalPlayer.Character:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Character:FindFirstChild("Fishman Karate").Level.Value <= 299  then
+					_G.Weapon = "Fishman Karate"
+				end
+				if game.Players.LocalPlayer.Character:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Character:FindFirstChild("Dragon Claw").Level.Value <= 299  then
+					_G.Weapon = "Dragon Claw"
+				end
+				if game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Character:FindFirstChild("Black Leg").Level.Value >= 300  then
+					local args = {
+						[1] = "BuyElectro"
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end
+				if game.Players.LocalPlayer.Character:FindFirstChild("Electro") and game.Players.LocalPlayer.Character:FindFirstChild("Electro").Level.Value >= 300  then
+					local args = {
+						[1] = "BuyFishmanKarate"
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg") and game.Players.LocalPlayer.Backpack:FindFirstChild("Black Leg").Level.Value >= 300  then
+					local args = {
+						[1] = "BuyElectro"
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Electro") and game.Players.LocalPlayer.Backpack:FindFirstChild("Electro").Level.Value >= 300  then
+					local args = {
+						[1] = "BuyFishmanKarate"
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Backpack:FindFirstChild("Fishman Karate").Level.Value >= 300  then
+					if game.Players.LocalPlayer.Data.Fragments.Value < 1500 then
+						if game.Players.LocalPlayer.Data.Level.Value > 1100 then
+							_G.RaidShip = "Flame"
+							_G.Raid = true
+						end
+					else
+						_G.RaidShip = "Flame"
+						_G.Raid = false
+						local args = {
+							[1] = "BlackbeardReward",
+							[2] = "DragonClaw",
+							[3] = "2"
+						}
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+					end
+				end
+				if game.Players.LocalPlayer.Character:FindFirstChild("Fishman Karate") and game.Players.LocalPlayer.Character:FindFirstChild("Fishman Karate").Level.Value >= 300  then
+					if game.Players.LocalPlayer.Data.Fragments.Value < 1500 then
+						if game.Players.LocalPlayer.Data.Level.Value > 1100 then
+							_G.RaidShip = "Flame"
+							_G.Raid = true
+						end
+					else
+						_G.Raid = false
+						local args = {
+							[1] = "BlackbeardReward",
+							[2] = "DragonClaw",
+							[3] = "2"
+						}
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+					end
+				end
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Claw").Level.Value >= 300  then
+					local args = {
+						[1] = "BuySuperhuman"
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end
+				if game.Players.LocalPlayer.Character:FindFirstChild("Dragon Claw") and game.Players.LocalPlayer.Character:FindFirstChild("Dragon Claw").Level.Value >= 300  then
+					local args = {
+						[1] = "BuySuperhuman"
+					}
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+				end 
+			end
+		end)
 	end)
 end)
 local plr = game.Players.LocalPlayer
@@ -448,14 +603,14 @@ spawn(function()
 				elseif game:GetService("Workspace").Enemies[Mon] then
 					local Distance2 = (game:GetService("Workspace").Enemies[Mon].HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
 					local tween_s = game:service"TweenService"
-					local info = TweenInfo.new(Distance2/350, Enum.EasingStyle.Linear)
+					local info = TweenInfo.new(Distance2/350)
 					local tween = tween_s:Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = game:GetService("Workspace").Enemies[Mon].HumanoidRootPart.CFrame * CFrame.new(0,45,0)})
 					tween:Play()
 					if _G.SelectWeapon ~= nil then EquipWeapon(_G.SelectWeapon) else end
 					local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
 					local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
 					Camera:Stop()
-					getupvalues(CombatFramework)[2].activeController.hitboxMagnitude = 80
+					getupvalues(CombatFramework)[2].activeController.hitboxMagnitude = 160
 					getupvalues(CombatFramework)[2]['activeController']:attack()    
 				end
 			end
@@ -469,11 +624,17 @@ spawn(function()
 			if _G.auto_farm then
 				CheckLevel()
 				if not game:GetService("Workspace").Enemies:FindFirstChild(Mon) then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+				_G.AtNPC = false
 					local Distance2 = (game:GetService("Workspace").LOL.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
 					local tween_s = game:service"TweenService"
 					local info = TweenInfo.new(Distance2/350, Enum.EasingStyle.Linear)
 					local tween = tween_s:Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = game:GetService("Workspace").LOL.CFrame * CFrame.new(0,0,0)})
 					tween:Play()   
+					tween.Completed:Connect(function() 
+						_G.AtNPC = true
+						game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+					end)
 					if Distance2 >= 3000 then
 						tp() 
 					end
@@ -587,27 +748,133 @@ end)
 
 spawn(function()
 	game:GetService("RunService").Heartbeat:Connect(function()
-		if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") and _G.auto_farm then
+		if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") and _G.auto_farm and _G.AtNPC then
 			setfflag("HumanoidParallelRemoveNoPhysics", "False")
 			setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-			game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
+		end
+	end)
+end)
+--- TP ---
+local PortButton = TPTabs:CreateButton("Port Town",function()
+	local POS = CFrame.new(-1161.69482, 627.770447, 6327.16455, 0.521119058, 4.56168578e-08, -0.853483975, 4.55974147e-09, 1, 5.62319009e-08, 0.853483975, -3.31951817e-08, 0.521119058)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local HydraCentralButton = TPTabs:CreateButton("Hydra Central",function()
+	local POS = CFrame.new(5616.24121, 792.75592, -291.137299, -0.996767044, -8.25330133e-08, 0.0803461596, -8.19674142e-08, 1, 1.03377484e-08, -0.0803461596, 3.71855968e-09, -0.996767044)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local SeaCastleButton = TPTabs:CreateButton("Castle of the sea",function()
+	local POS = CFrame.new(-5125.05273, 487.079315, -2978.00781, -0.37133342, 1.90678671e-11, 0.928499579, 6.50098428e-08, 1, 2.59787498e-08, -0.928499579, 7.00083902e-08, -0.37133342)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local MansionButton = TPTabs:CreateButton("Mansion",function()
+	local POS = CFrame.new(-12633.5732, 374.940247, -7563.30957, 0.0104836952, -3.8002117e-08, -0.999945045, 2.4679176e-08, 1, -3.77454619e-08, 0.999945045, -2.42821088e-08, 0.0104836952)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local TurtleCentralButton = TPTabs:CreateButton("Turtle Central",function()
+	local POS = CFrame.new(-11995.4346, 331.833954, -9004.95996, -0.998256207, 5.68199532e-09, 0.0590295903, 1.10569687e-08, 1, 9.07289532e-08, -0.0590295903, 9.1223427e-08, -0.998256207)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local GreatTreeButton = TPTabs:CreateButton("Great Tree",function()
+	local POS = CFrame.new(2984.9563, 372.688354, -6117.15723, -0.9028337, -2.4735348e-08, 0.429989874, -1.89436165e-08, 1, 1.7750212e-08, -0.429989874, 7.87992605e-09, -0.9028337)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local GreatTreeTopButton = TPTabs:CreateButton("Great Tree(Top)",function()
+	local POS = CFrame.new(2920.34424, 2278.71631, -7177.89258, -0.713094473, 5.57285311e-08, 0.701067924, 1.28524267e-08, 1, -6.64180106e-08, -0.701067924, -3.83518923e-08, -0.713094473)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local HauntedCatsleButton = TPTabs:CreateButton("Haunted Castle",function()
+	local POS = CFrame.new(-9532.78418, 456.130585, 4955.06348, 0.96368736, 3.4586789e-10, 0.2670331, -4.0914977e-10, 1, 1.81342927e-10, -0.2670331, -2.84014423e-10, 0.96368736)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local PeanutButton = TPTabs:CreateButton("Peanut Island",function()
+	local POS = CFrame.new(-1867.85059, 173.127228, -10111.3066, -0.898349047, 2.8603603e-08, -0.439282328, -1.67062506e-08, 1, 9.92793119e-08, 0.439282328, 9.65262359e-08, -0.898349047)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local CakemomButton = TPTabs:CreateButton("Cake Island(Giga Mom)",function()
+	local POS = CFrame.new(-1030.30225, 191.865662, -10992.0752, -0.704762399, 6.22321323e-08, 0.70944345, 6.39014033e-08, 1, -2.42398848e-08, -0.70944345, 2.8251069e-08, -0.704762399)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local CakeKataButton = TPTabs:CreateButton("Cake Isand(Cake prince)",function()
+	local POS = CFrame.new(-1899.10779, 19.3274879, -11662.7012, -0.97959584, -4.08598595e-08, -0.200977638, -5.61104301e-08, 1, 7.01853509e-08, 0.200977638, 8.00302189e-08, -0.97959584)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+local CakeCreamislandButton = TPTabs:CreateButton("Cake Cream island",function()
+	local POS = CFrame.new(-1045.57825, 6.48303652, -13945.3447, -0.974227428, 2.02364134e-08, -0.225567967, 3.58350469e-08, 1, -6.50583161e-08, 0.225567967, -7.14648323e-08, -0.974227428)
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+end)
+
+local V4Button = TPTabs:CreateButton("TP Temple?",function()
+local args = {
+    [1] = "RaceV4Progress",
+    [2] = "Teleport"
+}
+
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+end)
+local PortButton = TPTabs:CreateButton("Stop All Tween",function()
+	local TweenService = game:GetService("TweenService")
+
+local tweens = {}
+
+for _, tween in pairs(TweenService:GetTweens()) do
+    table.insert(tweens, tween)
+end
+
+for _, tween in ipairs(tweens) do
+    tween:Cancel()
+end
+end)
+--- Fruits ---
+local RandomFruitButton = FruitsTabs:CreateButton("Buy Random Fruit",function()
+local args = {
+    [1] = "Cousin",
+    [2] = "Buy"
+}
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+end)
+local GrabFruitButton = FruitsTabs:CreateSwitch("Buy Random Fruit",function(value)
+	_G.GrabFruit = value
+end)
+spawn(function()
+	game:GetService("RunService").RenderStepped:Connect(function()
+		if _G.GrabFruit == true then
+			for i,v in pairs(workspace:GetChildren()) do
+				if v:IsA("Tool") then
+					local POS = v:FindFirstChild("Handle").CFrame
+	local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], TweenInfo.new((game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].Position - POS.Position).Magnitude/150), {CFrame = POS})
+					tween:Play()  
+				end
+			end
 		end
 	end)
 end)
 --- Stats ---
-local MeleePointButton = StatsTabs:Switch("Add Melee",function(Value)
+local MeleePointButton = StatsTabs:CreateSwitch("Add Melee",function(Value)
     _G.Point_Melee = Value
 end)
-local DefensePointButton = StatsTabs:Switch("Add Defense",function(Value)
+local DefensePointButton = StatsTabs:CreateSwitch("Add Defense",function(Value)
     _G.Point_Defense = Value
 end)
-local SwordPointButton = StatsTabs:Switch("Add Sword",function(Value)
+local SwordPointButton = StatsTabs:CreateSwitch("Add Sword",function(Value)
     _G.Point_Sword = Value
 end)
-local GunPointButton = StatsTabs:Switch("Add Gun",function(Value)
+local GunPointButton = StatsTabs:CreateSwitch("Add Gun",function(Value)
     _G.Point_Gun = Value
 end)
-local DFPointButton = StatsTabs:Switch("Add Fruit",function(Value)
+local DFPointButton = StatsTabs:CreateSwitch("Add Fruit",function(Value)
     _G.Point_DF = Value
 end)
 spawn(function()
@@ -670,46 +937,83 @@ spawn(function()
 	end
 end)
 --- Shop ---
-local HomeTabText = ShopTabs:Text("Melee: ")
-local HomeTabSeperator = ShopTabs:Seperator()
-local BlackLegButton = ShopTabs:Button("Buy Dark step",function()
+local ShopTabText = ShopTabs:CreateText("Melee: ")
+ShopTabs:CreateSeperator()
+local BlackLegButton = ShopTabs:CreateButton("Buy Dark step",function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
 end)
-local SuperhumanButton = ShopTabs:Button("Buy Superhuman",function()
+local SuperhumanButton = ShopTabs:CreateButton("Buy Superhuman",function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
 end)
-local FishmanKarateButton = ShopTabs:Button("Buy Fishman Karate",function()
+local FishmanKarateButton = ShopTabs:CreateButton("Buy Fishman Karate",function()
 	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
 end)
-local ElectroButton = ShopTabs:Button("Buy Electro",function()
+local ElectroButton = ShopTabs:CreateButton("Buy Electro",function()
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
 end)
-local DragonClawButton = ShopTabs:Button("Buy Dragon Claw",function()
+local DragonClawButton = ShopTabs:CreateButton("Buy Dragon Claw",function()
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","2")
 end)
-local EclawButton = ShopTabs:Button("Buy Electric Claw",function()
+local EclawButton = ShopTabs:CreateButton("Buy Electric Claw",function()
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
 end)
-local SharkmanButton = ShopTabs:Button("Buy Sharkman Karate",function()
+local SharkmanButton = ShopTabs:CreateButton("Buy Sharkman Karate",function()
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
 end)
-local DragonTalonButton = ShopTabs:Button("Buy Sharkman Karate",function()
+local DragonTalonButton = ShopTabs:CreateButton("Buy Sharkman Karate",function()
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
 end)
-local DeathStepButton = ShopTabs:Button("Buy Death Step",function()
+local DeathStepButton = ShopTabs:CreateButton("Buy Death Step",function()
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
 end)
-local GodmanButton = ShopTabs:Button("Buy Godhuman",function()
+local GodmanButton = ShopTabs:CreateButton("Buy Godhuman",function()
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
 end)
+local ShopTabText2 = ShopTabs:CreateText("Sword: ")
+ShopTabs:CreateSeperator()
+local KatanaButton = ShopTabs:CreateButton("Buy Katana",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Katana")
+end)
+local CutlassButton = ShopTabs:CreateButton("Buy Dual Katana",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Dual Katana")
+end)
+local DualButton = ShopTabs:CreateButton("Buy Cutlass",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Cutlass")
+end)
+local MaceButton = ShopTabs:CreateButton("Buy Iron Mace",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Iron Mace")
+end)
+local TripleButton = ShopTabs:CreateButton("Buy Triple Katana",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Triple Katana")
+end)
+local PipeButton = ShopTabs:CreateButton("Buy Pipe",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Pipe")
+end)
+local CaneButton = ShopTabs:CreateButton("Buy Soul Cane",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Soul Cane")
+end)
+local twoheadButton = ShopTabs:CreateButton("Buy Dual-Headed Blade",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Dual-Headed Blade")
+end)
+local BisentoButton = ShopTabs:CreateButton("Buy Bisento",function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Bisento")
+end)
 --- raid ---
-local RaidTabsDropdown = RaidTabs:Dropdown("Select a Raid",{"Flame","Ice","Dark","Light"},function(Value)
+local RaidTabsDropdown = RaidTabs:CreateDropdown("Select a Raid",{"Flame","Ice","Dark","Light"},function(Value)
 	_G.SelectedRaid = Value
 end)
-local BuyChipButton = RaidTabs:Button("Buy Chip",function()
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNPC", "Select", _G.SelectedRaid)
+local BuyChipButton = RaidTabs:CreateButton("Buy Chip",function()
+
+local args = {
+    [1] = "RaidsNpc",
+    [2] = "Select",
+    [3] = _G.SelectedRaid
+}
+
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+
 end)
-local StartRaidButton = RaidTabs:Button("Start Raid",function()
+local StartRaidButton = RaidTabs:CreateButton("Start Raid",function()
     fireclickdetector(game:GetService("Workspace").Map["Boat Castle"].RaidSummon2.Button.Main.ClickDetector)
 end)
 spawn(function()
@@ -737,7 +1041,7 @@ end)
 spawn(function()
 	game:GetService("RunService").RenderStepped:Connect(function()
 		pcall(function()
-			if _G.Raid then
+			if _G.Raid and _G.Raidisland ~= nil then
 				local Distance2 = (game:GetService("Workspace")["_WorldOrigin"].Locations[_G.Raidisland].Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
 				local tween_s = game:service"TweenService"
 				local info = TweenInfo.new(Distance2/350, Enum.EasingStyle.Linear)
@@ -771,14 +1075,14 @@ spawn(function()
 		end
 	end)
 end)
-local FarmRaidButton = RaidTabs:Switch("Kill Aura",function(Value)
+local FarmRaidButton = RaidTabs:CreateSwitch("Kill Aura",function(Value)
     _G.Kill_Aura = Value
 end)
-local FarmRaidButton = RaidTabs:Switch("Raid Farm",function(Value)
+local FarmRaidButton = RaidTabs:CreateSwitch("Raid Farm",function(Value)
     _G.Raid = Value
 end)
 --- Misc ---
-local AutofarmSwitch = MiscTabs:Switch("Auto Rejoin",function(Value)
+local AutofarmSwitch = MiscTabs:CreateSwitch("Auto Rejoin",function(Value)
 	if Value == true then
 		_G.auto_rejoin = true
 	else
