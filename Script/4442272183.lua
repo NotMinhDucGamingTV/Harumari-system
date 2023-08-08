@@ -1,5 +1,5 @@
 local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/NotMinhDucGamingTV/UI-Libs/main/haru-sleek/source",true))()
-local type =                         readfile("HarumariSystem/Type.HSys") or"Free"
+local type = readfile("HarumariSystem/Type.HSys") or"Free"
 if _G.Type == "Premium" then
 	type = "Premium"
 end
