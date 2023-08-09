@@ -213,7 +213,6 @@ local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 				TextBox.Text = "This game is not supported."
 			end
 			wait(1)
-			Harumariswhitlistsystem:Destroy()
 		elseif res == "authenticated-premium" then
 			_G.Type = "PREMIUM"
 			writefile("HarumariSystem/Type.HSys","Premium")
@@ -230,7 +229,6 @@ local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMin
 			end
 			end
 			wait(1)
-			Harumariswhitlistsystem:Destroy()
 		elseif res == "wrongdevice" then
 			ui()
 		elseif res == "invalid key" then
