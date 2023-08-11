@@ -197,6 +197,9 @@ local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMin
 	end
 end)
 end
+if typeof(keycontent) ~= "string" then
+	return ui()
+end
 local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 		local res = nil 
 		res = game:HttpGet("https://harumari-system.notminhducgamingtv.tk/api/checkkey?key="..keycontent.."&hwid="..hwid)
