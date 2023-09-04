@@ -163,7 +163,7 @@ TextBox.FocusLost:Connect(function(Entered)
 		if res == "authenticated" then
 			writefile("HarumariSystem/Type.HSys","Free")
 			writefile("HarumariSystem/Key.HSys",TextBox.Text)
-			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
+			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/Harumari-system/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
 			if script then
 				script()
 			else
@@ -175,12 +175,12 @@ TextBox.FocusLost:Connect(function(Entered)
 			_G.Type = "PREMIUM"
 			writefile("HarumariSystem/Key.HSys",TextBox.Text)
 writefile("HarumariSystem/Type.HSys","Premium")
-			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'-premium.lua'))
+			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/Harumari-system/Harumari-system/main/Script/'..tostring(game.PlaceId)..'-premium.lua'))
 			if script then
 				script()
 			else
 				TextBox.Text = "This game is not supported for premium yet,using free key."
-local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
+local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/Harumari-system/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
 			if script then
 				script()
 			else
@@ -209,7 +209,7 @@ local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 		if res == "authenticated" then
 			writefile("HarumariSystem/Type.HSys","Free")
 			_G.Type = "FREE"
-			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
+			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/Harumari-system/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
 			if script then
 				script()
 			else
@@ -219,12 +219,12 @@ local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
 		elseif res == "authenticated-premium" then
 			_G.Type = "PREMIUM"
 			writefile("HarumariSystem/Type.HSys","Premium")
-			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'-premium.lua'))
+			local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/Harumari-system/Harumari-system/main/Script/'..tostring(game.PlaceId)..'-premium.lua'))
 			if script then
 				script()
 			else
 				print("This game is not supported for premium yet,using free key.")
-local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
+local script = loadstring(game:HttpGet('https://raw.githubusercontent.com/Harumari-system/Harumari-system/main/Script/'..tostring(game.PlaceId)..'.lua'))
 			if script then
 				script()
 			else
