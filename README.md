@@ -23,7 +23,7 @@ Harumari System is a comprehensive platform designed to provide top-of-the-line 
 
 # Loaders:
 ```lua 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/NotMinhDucGamingTV/Harumari-system/main/Loader.lua'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Harumari-system/Harumari-system/main/Loader.lua'))()
 ```
  
  # About keys:
